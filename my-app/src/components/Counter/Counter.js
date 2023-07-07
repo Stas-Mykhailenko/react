@@ -7,7 +7,9 @@ class Counter extends React.Component {
     firstsmile: 0,
     secondsmile: 0,
     thirdsmile: 0,
-    isShow: false,
+    showFirstSmile: false,
+    showSecondSmile: false,
+    showThirdSmile: false,
   };
   firstsmile = () => {
     this.setState((state) => ({ firstsmile: state.firstsmile + 1 }));
@@ -19,7 +21,34 @@ class Counter extends React.Component {
     this.setState((state) => ({ thirdsmile: state.thirdsmile + 1 }));
   };
   handleShow = () => {
-    this.setState((state) => ({ isShow: !state.isShow }));
+    if (
+      this.state.firstsmile > this.state.secondsmile ||
+      this.state.firstsmile > this.state.thirdsmile
+    ) {
+      this.setState((state) => ({ showFirstSmile: !state.showFirstSmile }));
+    }
+    if (
+      this.state.secondsmile > this.state.firstsmile ||
+      this.state.secondsmile > this.state.thirdsmile
+    ) {
+      this.setState((state) => ({ showSecondSmile: !state.showSecondSmile }));
+    }
+    if (
+      this.state.thirdsmile > this.state.firstsmile ||
+      this.state.thirdsmile > this.state.secondsmile
+    ) {
+      this.setState((state) => ({ showThirdSmile: !state.showThirdSmile }));
+    }
+    if (
+      this.state.firstsmile === this.state.secondsmile &&
+      this.state.secondsmile === this.state.thirdsmile
+    ) {
+      this.setState((state) => ({
+        showFirstSmile: !state.showFirstSmile,
+        showSecondSmile: !state.showSecondSmile,
+        showThirdSmile: !state.showThirdSmile,
+      }));
+    }
   };
 
   render() {
@@ -33,21 +62,21 @@ class Counter extends React.Component {
           style={{ width: "50px", height: "50px", cursor: "pointer" }}
           onClick={this.firstsmile}
         />
-        <p>{this.state.isShow && this.state.firstsmile}</p>
+        <p>{this.state.showFirstSmile && this.state.firstsmile}</p>
         <img
           src={smilesecond}
           alt=""
           style={{ width: "50px", height: "50px", cursor: "pointer" }}
           onClick={this.secondsmile}
         />
-        <p>{this.state.isShow && this.state.secondsmile}</p>
+        <p>{this.state.showSecondSmile && this.state.secondsmile}</p>
         <img
           src={smilethird}
           alt=""
           style={{ width: "50px", height: "50px", cursor: "pointer" }}
           onClick={this.thirdsmile}
         />
-        <p>{this.state.isShow && this.state.thirdsmile}</p>
+        <p>{this.state.showThirdSmile && this.state.thirdsmile}</p>
         <button onClick={this.handleShow}>Show results</button>
       </div>
     );
