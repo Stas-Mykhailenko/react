@@ -1,15 +1,20 @@
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+
 import "./main.css";
-import LeftPanel from "../LeftPanel/LeftPanel";
-import MediumContainer from "../MediumContainer/MediumContainer";
-import { useState } from "react";
+import Home from "../../pages/Home"
+import Listtodo from "../../pages/Listtodo"
+import Vote from "../../pages/Vote"
+
 
 const Main = () => {
-
-
   return (
     <div className="main">
-      <LeftPanel/>
-      <MediumContainer />
+      <Routes>
+        <Route path="/" element={<Home />}/>
+        <Route path="vote" element={<Listtodo/>} />
+        <Route path="listtodo" element={ <Vote />} /> 
+      </Routes>
     </div>
   );
 };

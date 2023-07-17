@@ -12,11 +12,12 @@ class Todolist extends React.Component {
     this.setState((state) => ({ task: (state.task = e.target.value) }));
   };
   handleClick = () => {
-    this.setState((state) => ({ task: state.list.push(state.task) }));
+    this.setState((state) => ( state.list.push(state.task) ));
+    console.log(this.state.task)
     this.setState((state) => ({ task: (state.task = "") }));
   };
   deleteLastTask = () => {
-    this.setState((state) => ({ task: state.list.pop() }));
+    this.setState((state) => (state.list.pop() ));
     this.setState((state) => ({ task: (state.task = "") }));
   };
 
@@ -31,6 +32,7 @@ class Todolist extends React.Component {
   render() {
     return (
       <div>
+        <h1>Enter your task.</h1>
         {this.renderlist(this.state.list)}
         <input
           type="text"
